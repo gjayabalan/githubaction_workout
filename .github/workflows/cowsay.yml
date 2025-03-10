@@ -1,0 +1,19 @@
+name: cowsay install
+on: [push]
+
+jobs:
+  cowsay_install:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Install cowsay
+      run: sudo apt-get install cowsay
+    - name: Exectue  cowsay CMD
+      run: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR!" >> cowsay.txt
+    - name: Test file exists
+      run: grep -i "dragon"  cowsay.txt
+    - name: Display cowsay.txt
+      run: cat cowsay.txt
+    - name: list repo files
+      run: ls -ltra
